@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Volumes/Disco Duro/Projects/Artist Portfolio/venv/bin/python3.11" "$0" "$@"
+'''exec' "/Users/irammendoza/Documents/Dev/Projects/Artist Portfolio Back/venv/bin/python3.11" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

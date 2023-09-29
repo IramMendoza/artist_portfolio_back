@@ -19,11 +19,18 @@ from django.urls import path
 from django.urls import include
 from artist.views import ArtistRetrieveAPIView
 from events import views
+from rest_framework.documentation import include_docs_urls
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/<artist_name>/', ArtistRetrieveAPIView.as_view()),
+    path('api/artist/<name>/', ArtistRetrieveAPIView.as_view()),
     path('api/events/', views.EventListAPIView.as_view()),
     path('api/events/<event_pk>/', views.EventRetrieveAPIView.as_view()),
     path('api/events/<event_pk>/gallery/', views.GalleryRetrieveAPIView.as_view()),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
