@@ -14,8 +14,6 @@ class EventRetrieveAPIView(RetrieveAPIView):
     
 class GalleryRetrieveAPIView(RetrieveAPIView):
     serializer_class = GallerySerializer
-    
+
     def get_object(self):
-        return Event.objects.get(pk=self.kwargs['gallery_pk'])
-    
-    queryset = Gallery.objects.all()
+        return Gallery.objects.get(pk=self.kwargs['event_pk'])

@@ -9,24 +9,26 @@ class PhotoSerializer(serializers.ModelSerializer):
         
 class GallerySerializer(serializers.ModelSerializer):
     
-    photo = PhotoSerializer(many=True)
+    photo = PhotoSerializer()
     
     class Meta:
         model = Gallery
         fields = '__all__'
         
 class GalleryHyperLinkedSerializer(serializers.HyperlinkedModelSerializer):
-    
-    photo = PhotoSerializer(many=True)
-    
+        
     class Meta:
         model = Gallery
-        fields = ('url', 'id')
+        fields = ('url', 'pk', 'photo')
+        extra_kwargs = {
+            'Photo': { 'view_name': 'gallery-detail', 'lookup_field': 'pk' }
+        }
+        
 
 
 class EventSerializer(serializers.ModelSerializer):
     
-    gallery = GalleryHyperLinkedSerializer(many=True)
+    gallery = GallerySerializer()
     
     class Meta:
         model = Event

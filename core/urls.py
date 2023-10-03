@@ -28,7 +28,7 @@ urlpatterns = [
     path('api/artist/<name>/', ArtistRetrieveAPIView.as_view()),
     path('api/events/', views.EventListAPIView.as_view()),
     path('api/events/<event_pk>/', views.EventRetrieveAPIView.as_view()),
-    path('api/events/<event_pk>/gallery/', views.GalleryRetrieveAPIView.as_view()),
+    path('api/events/<event_pk>/gallery/', views.GalleryRetrieveAPIView.as_view(),name='gallery-detail'),
 ]
 
 
