@@ -10,3 +10,5 @@ class ArtistRetrieveAPIView(RetrieveAPIView):
         artist_name = self.kwargs['name']
         queryset = Artist.objects.filter(name=artist_name)
         return queryset
+
+#@@@##### ----------

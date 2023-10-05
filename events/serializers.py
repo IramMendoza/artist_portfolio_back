@@ -1,34 +1,15 @@
 from rest_framework import serializers
-from .models import Event, Gallery, Photo
+from .models import Event, Picture
 
-class PhotoSerializer(serializers.ModelSerializer):
+class PictureSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = Photo
-        fields = '__all__'
-        
-class GallerySerializer(serializers.ModelSerializer):
-    
-    photo = PhotoSerializer()
-    
-    class Meta:
-        model = Gallery
-        fields = '__all__'
-        
-class GalleryHyperLinkedSerializer(serializers.HyperlinkedModelSerializer):
-        
-    class Meta:
-        model = Gallery
-        fields = ('url', 'pk', 'photo')
-        extra_kwargs = {
-            'Photo': { 'view_name': 'gallery-detail', 'lookup_field': 'pk' }
-        }
-        
-
+        model = Picture
+        fields = '__all__'      
 
 class EventSerializer(serializers.ModelSerializer):
     
-    gallery = GallerySerializer()
+    pictures = PictureSerializer(many=True, read_only=True)
     
     class Meta:
         model = Event
